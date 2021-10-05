@@ -48,7 +48,7 @@ void restart_clicked_cb (GtkButton *restart, GtkWidget *timer_box) {
 	if (gtk_toggle_button_get_active( GTK_TOGGLE_BUTTON(timer))) {
 		options = get_shutdown_timer_options(timer_box);
 		g_assert(options);
-		snprintf(command, COMMAND_SIZE, "shutdown -r %s", options);
+		snprintf(command, COMMAND_SIZE, "loginctl reboot %s", options);
 		notify_user("Rebooting in %s minutes", options);
 		play_alert_sound();
 		g_free(options);
@@ -74,7 +74,7 @@ void shutdown_clicked_cb (GtkButton *shutdown, GtkWidget *timer_box) {
 	if (gtk_toggle_button_get_active( GTK_TOGGLE_BUTTON(timer))) {
 		options = get_shutdown_timer_options(timer_box);
 		g_assert(options);
-		snprintf(command, COMMAND_SIZE, "shutdown %s", options);
+		snprintf(command, COMMAND_SIZE, "loginctl poweroff %s", options);
 		notify_user("Shuting down in %s minutes", options);
 		play_alert_sound();
 		g_free(options);
